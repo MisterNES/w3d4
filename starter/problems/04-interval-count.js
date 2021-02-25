@@ -11,12 +11,14 @@ node with the examples below.
 ***********************************************************************/
 
 function intervalCount(cb, delay, amt) {
-  let count = 0;
-  for (let i=0; i<amt; i++) {
-    setInterval(cb, delay)
-    clearsetInterval()
-  }
-}
+    const intervalObj = setInterval(function(){
+      cb();
+      amt--
+    if(amt === 0) {
+      clearInterval(intervalObj);
+    }
+  }, delay);
+};
 
 intervalCount(function() {
   console.log('hi');
